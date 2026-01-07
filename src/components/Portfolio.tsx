@@ -143,7 +143,7 @@ export function Portfolio() {
                   </div>
                 </div>
 
-                {/* View Details Link */}
+             
               </div>
             </motion.div>
           ))}
