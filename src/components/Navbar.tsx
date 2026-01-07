@@ -31,7 +31,7 @@ export function Navbar() {
     }, [isMobileMenuOpen])
 
     // Determine navbar classes based on route and scroll state
-    const navbarClasses = `w-full px-6 sm:px-8 lg:px-12 py-4 transition-all duration-300 ease-out ${isHome && !isScrolled ? 'bg-transparent' : 'glass-navbar'
+    const navbarClasses = `w-full px-6 sm:px-8 lg:px-12 py-2 transition-all duration-300 ease-out ${isHome && !isScrolled ? 'bg-transparent' : 'glass-navbar'
         }`
 
     const linkClasses = "text-white hover:text-gold font-medium gentle-animation"
@@ -55,7 +55,7 @@ export function Navbar() {
                             <img
                                 src={builtlineLogo}
                                 alt="BuiltLine Construction"
-                                className="h-14 sm:h-16 w-auto"
+                                className="h-10 sm:h-12 w-auto"
                             />
                         </Link>
 

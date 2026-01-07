@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 export function Portfolio() {
+  const [visibleCount, setVisibleCount] = useState(3)
+
   const projects = [
     {
       title: "Skyline Towers",
@@ -25,6 +28,27 @@ export function Portfolio() {
       description: "State-of-the-art logistics facility with automated systems and LEED Gold certification.",
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
       stats: { area: "500,000 sq ft", duration: "18 months", value: "$32M" }
+    },
+    {
+      title: "Grand Plaza Hotel",
+      category: "Commercial",
+      description: "Luxury 5-star hotel complex with convention center and rooftop amenities.",
+      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      stats: { area: "180,000 sq ft", duration: "20 months", value: "$55M" }
+    },
+    {
+      title: "Oakwood Heights",
+      category: "Residential",
+      description: "Exclusive gated community featuring modern architectural designs and green spaces.",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+      stats: { area: "85 acres", duration: "30 months", value: "$42M" }
+    },
+    {
+      title: "Tech Hub Innovation Center",
+      category: "Industrial",
+      description: "Next-generation research and manufacturing facility for advanced technology sectors.",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+      stats: { area: "320,000 sq ft", duration: "22 months", value: "$68M" }
     }
   ]
 
@@ -69,7 +93,7 @@ export function Portfolio() {
 
         {/* Projects Grid */}
         <div className="space-y-16">
-          {projects.map((project, index) => (
+          {projects.slice(0, visibleCount).map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
@@ -120,30 +144,29 @@ export function Portfolio() {
                 </div>
 
                 {/* View Details Link */}
-                <button className="inline-flex items-center gap-2 text-gold hover:text-gold-dark font-semibold gentle-animation group/btn">
-                  View Project Details
-                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 gentle-animation" />
-                </button>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* View All Projects CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-charcoal hover:bg-charcoal/90 text-white font-bold px-10 py-4 rounded-md gentle-animation cursor-pointer text-lg border border-gold/20 hover:border-gold/40"
+        {visibleCount < projects.length && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
           >
-            View All Projects
-          </motion.button>
-        </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setVisibleCount(prev => prev + 3)}
+              className="bg-charcoal hover:bg-charcoal/90 text-white font-bold px-10 py-4 rounded-md gentle-animation cursor-pointer text-lg border border-gold/20 hover:border-gold/40"
+            >
+              View More Projects
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </section>
   )
